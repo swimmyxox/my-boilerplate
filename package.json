@@ -4,7 +4,7 @@
   "license": "MIT",
   "description": "My Boilerplate",
   "scripts": {
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist/*.html dist/css dist/*.js",
     "prebuild": "yarn clean",
     "build": "webpack",
     "watch": "webpack --watch",
