@@ -1,12 +1,13 @@
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path');
 
 module.exports = {
   mode: "development",
-  output: {
-    chunkFilename: "[name]-[contenthash].js",
-    filename: "[name]-[contenthash].js",
+  output : {
+    path    : path.resolve(__dirname, 'dist'),
+    filename: './bundle.js'
   },
   plugins: [
     new webpack.ProgressPlugin(),
@@ -16,11 +17,15 @@ module.exports = {
       minify: false,
     }),
   ],
+  resolveLoader: {
+    modules: [path.resolve(__dirname, "src"), "node_modules"],
+  },
   module: {
     rules: [
       {
         test: /.(js|jsx)$/,
         loader: "babel-loader",
+        exclude: /node_modules/,
       },
       {
         test: /\.s[ac]ss$/i,
